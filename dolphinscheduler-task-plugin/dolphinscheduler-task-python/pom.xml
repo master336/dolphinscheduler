@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-python</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/python</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

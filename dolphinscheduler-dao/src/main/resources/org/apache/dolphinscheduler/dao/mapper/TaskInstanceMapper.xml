@@ -93,7 +93,7 @@
         where process_instance_id = #{processInstanceId}
         and name = #{name}
         and flag = 1
-        limit 1
+        and rownum = 1
     </select>
     <select id="queryByInstanceIdAndCode" resultType="org.apache.dolphinscheduler.dao.entity.TaskInstance">
         select
@@ -102,7 +102,7 @@
         where process_instance_id = #{processInstanceId}
         and task_code = #{taskCode}
         and flag = 1
-        limit 1
+        and rownum =1
     </select>
     <select id="countTask" resultType="java.lang.Integer">
         select count(1) as count

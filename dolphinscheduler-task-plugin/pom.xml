@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-plugin</artifactId>
     <packaging>pom</packaging>
-
+    <properties>
+        <plugin.type>lib</plugin.type>
+    </properties>
     <modules>
         <module>dolphinscheduler-task-api</module>
         <module>dolphinscheduler-task-shell</module>
@@ -40,4 +42,28 @@
         <module>dolphinscheduler-task-procedure</module>
         <module>dolphinscheduler-task-pigeon</module>
     </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <!-- <version>3.2.0</version> -->
+                <executions>
+                    <execution>
+                        <id>copy-lib</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${plugin.type}</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

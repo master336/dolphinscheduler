@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-sqoop</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/sqoop</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

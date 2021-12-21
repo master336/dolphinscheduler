@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-procedure</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/procedure</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

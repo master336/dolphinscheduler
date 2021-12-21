@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-mr</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/mr</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

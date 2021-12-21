@@ -99,7 +99,7 @@ public interface TaskDefinitionMapper extends BaseMapper<TaskDefinition> {
      * @param taskDefinitions taskDefinitions
      * @return int
      */
-    int batchInsert(@Param("taskDefinitions") List<TaskDefinitionLog> taskDefinitions);
+    int batchInsert(@Param("taskDefinition") TaskDefinitionLog taskDefinition);
 
     /**
      * task definition page

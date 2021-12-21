@@ -74,7 +74,7 @@ public interface ProcessTaskRelationMapper extends BaseMapper<ProcessTaskRelatio
      * @param taskRelationList taskRelationList
      * @return int
      */
-    int batchInsert(@Param("taskRelationList") List<ProcessTaskRelationLog> taskRelationList);
+    int batchInsert(@Param("relation") ProcessTaskRelationLog taskRelationList);
 
     /**
      * query downstream process task relation by taskCode

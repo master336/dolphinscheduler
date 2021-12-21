@@ -26,6 +26,9 @@
 
     <artifactId>dolphinscheduler-task-pigeon</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <plugin.type>../../task/pigeon</plugin.type>
+    </properties>
     <dependencies>
 
         <dependency>

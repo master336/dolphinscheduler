@@ -61,7 +61,7 @@
         select
         <include refid="baseSql"/>
         from t_ds_process_definition_log
-        where code = #{code} order by version desc limit 1
+        where code = #{code} and rownum = 1 order by version desc
     </select>
 
     <select id="queryProcessDefinitionVersionsPaging"

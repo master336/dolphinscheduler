@@ -43,7 +43,7 @@
     <select id="existGroupName" resultType="java.lang.Boolean">
         select 1
         from t_ds_alertgroup
-        where group_name=#{groupName} limit 1
+        where group_name=#{groupName} and rownum = 1
     </select>
 
     <select id="queryByUserId" resultType="org.apache.dolphinscheduler.dao.entity.AlertGroup">

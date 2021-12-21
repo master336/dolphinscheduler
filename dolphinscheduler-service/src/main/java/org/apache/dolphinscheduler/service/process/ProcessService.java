@@ -2168,7 +2168,11 @@ public class ProcessService {
             processTaskRelationMapper.deleteByCode(processDefinition.getProjectCode(), processDefinition.getCode());
         }
         List<ProcessTaskRelationLog> processTaskRelationLogList = processTaskRelationLogMapper.queryByProcessCodeAndVersion(processDefinition.getCode(), processDefinition.getVersion());
-        return processTaskRelationMapper.batchInsert(processTaskRelationLogList);
+        int resultCount = 0;
+        for (ProcessTaskRelationLog processTaskRelationLog : processTaskRelationLogList) {
+            resultCount += processTaskRelationMapper.batchInsert(processTaskRelationLog);
+        }
+        return resultCount;
     }
 
     /**
@@ -2243,8 +2247,13 @@ public class ProcessService {
             }
         }
         if (!newTaskDefinitionLogs.isEmpty()) {
-            updateResult += taskDefinitionMapper.batchInsert(newTaskDefinitionLogs);
-            insertResult += taskDefinitionLogMapper.batchInsert(newTaskDefinitionLogs);
+
+            for (TaskDefinitionLog newTaskDefinitionLog : newTaskDefinitionLogs) {
+                updateResult += taskDefinitionMapper.batchInsert(newTaskDefinitionLog);
+            }
+            for (TaskDefinitionLog newTaskDefinitionLog : newTaskDefinitionLogs) {
+                insertResult += taskDefinitionLogMapper.batchInsert(newTaskDefinitionLog);
+            }
         }
         return (insertResult & updateResult) > 0 ? 1 : Constants.EXIT_CODE_SUCCESS;
     }
@@ -2311,8 +2320,14 @@ public class ProcessService {
             }
             processTaskRelationMapper.deleteByCode(projectCode, processDefinitionCode);
         }
-        int result = processTaskRelationMapper.batchInsert(taskRelationList);
-        int resultLog = processTaskRelationLogMapper.batchInsert(taskRelationList);
+        int result = 0;
+        for (ProcessTaskRelationLog processTaskRelationLog : taskRelationList) {
+            result += processTaskRelationMapper.batchInsert(processTaskRelationLog);
+        }
+        int resultLog = 0;
+        for (ProcessTaskRelationLog processTaskRelationLog : taskRelationList) {
+            resultLog += processTaskRelationLogMapper.batchInsert(processTaskRelationLog);
+        }
         return (result & resultLog) > 0 ? Constants.EXIT_CODE_SUCCESS : Constants.EXIT_CODE_FAILURE;
     }
 

@@ -309,8 +309,14 @@ public class TaskDefinitionServiceImpl extends BaseServiceImpl implements TaskDe
             if ((delete & deleteLog) == 0) {
                 throw new ServiceException(Status.DELETE_TASK_PROCESS_RELATION_ERROR);
             } else {
-                int insertRelation = processTaskRelationMapper.batchInsert(processTaskRelationLogList);
-                int insertRelationLog = processTaskRelationLogMapper.batchInsert(processTaskRelationLogList);
+                int insertRelation = 0;
+                for (ProcessTaskRelationLog processTaskRelationLog : processTaskRelationLogList) {
+                    insertRelation += processTaskRelationMapper.batchInsert(processTaskRelationLog);
+                }
+                int insertRelationLog = 0;
+                for (ProcessTaskRelationLog processTaskRelationLog : processTaskRelationLogList) {
+                    insertRelationLog += processTaskRelationLogMapper.batchInsert(processTaskRelationLog);
+                }
                 if ((insertRelation & insertRelationLog) == 0) {
                     throw new ServiceException(Status.CREATE_PROCESS_TASK_RELATION_ERROR);
                 }

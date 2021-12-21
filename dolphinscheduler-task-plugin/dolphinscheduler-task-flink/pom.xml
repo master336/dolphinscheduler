@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-flink</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/flink</plugin.type>
+    </properties>
     <dependencies>
     <dependency>
         <groupId>org.apache.dolphinscheduler</groupId>

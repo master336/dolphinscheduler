@@ -63,7 +63,7 @@ public interface TaskDefinitionLogMapper extends BaseMapper<TaskDefinitionLog> {
      * @param taskDefinitionLogs taskDefinitionLogs
      * @return int
      */
-    int batchInsert(@Param("taskDefinitionLogs") List<TaskDefinitionLog> taskDefinitionLogs);
+    int batchInsert(@Param("taskDefinitionLog") TaskDefinitionLog taskDefinitionLog);
 
     /**
      * delete the certain task definition version by task definition code and version

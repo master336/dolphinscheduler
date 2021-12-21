@@ -280,11 +280,17 @@ public class ProcessTaskRelationServiceTest {
         processTaskRelationLog.setPostTaskCode(postTaskCode);
         processTaskRelationLog.setPostTaskVersion(1);
         processTaskRelationList.add(processTaskRelationLog);
-        Mockito.when(processTaskRelationMapper.batchInsert(processTaskRelationList)).thenReturn(1);
-        Mockito.when(processTaskRelationLogMapper.batchInsert(processTaskRelationList)).thenReturn(1);
+        Mockito.when(batchInsert(processTaskRelationList)).thenReturn(1);
         Assert.assertEquals(Status.SUCCESS, result.get(Constants.STATUS));
     }
-
+    int batchInsert(List<ProcessTaskRelationLog> processTaskRelationList){
+        int count = 0;
+        for (ProcessTaskRelationLog processTaskRelationLog : processTaskRelationList) {
+            count += processTaskRelationMapper.batchInsert(processTaskRelationLog);
+            count += processTaskRelationLogMapper.batchInsert(processTaskRelationLog);
+        }
+        return count;
+    }
     @Test
     public void testMoveTaskProcessRelation() {
         long projectCode = 1L;

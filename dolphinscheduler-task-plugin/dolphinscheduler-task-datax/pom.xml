@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-datax</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/datax</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

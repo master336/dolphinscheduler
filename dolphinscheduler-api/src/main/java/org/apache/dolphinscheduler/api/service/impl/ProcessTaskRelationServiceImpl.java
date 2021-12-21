@@ -159,8 +159,14 @@ public class ProcessTaskRelationServiceImpl extends BaseServiceImpl implements P
             processTaskRelationLog.setPreTaskVersion(0);
             processTaskRelationLogs.add(processTaskRelationLog);
         }
-        int insert = processTaskRelationMapper.batchInsert(processTaskRelationLogs);
-        int insertLog = processTaskRelationLogMapper.batchInsert(processTaskRelationLogs);
+        int insert =0;
+        for (ProcessTaskRelationLog processTaskRelationLog : processTaskRelationLogs) {
+            insert += processTaskRelationMapper.batchInsert(processTaskRelationLog);
+        }
+        int insertLog = 0;
+        for (ProcessTaskRelationLog processTaskRelationLog : processTaskRelationLogs) {
+            insertLog += processTaskRelationLogMapper.batchInsert(processTaskRelationLog);
+        }
         if ((insert & insertLog) > 0) {
             putMsg(result, Status.SUCCESS);
         } else {
@@ -641,8 +647,12 @@ public class ProcessTaskRelationServiceImpl extends BaseServiceImpl implements P
             throw new ServiceException(Status.DELETE_TASK_PROCESS_RELATION_ERROR);
         } else {
             if (!updates.isEmpty()) {
-                int insert = processTaskRelationMapper.batchInsert(updates);
-                int insertLog = processTaskRelationLogMapper.batchInsert(updates);
+                int insert = 0;
+                int insertLog = 0;
+                for (ProcessTaskRelationLog update : updates) {
+                    insert += processTaskRelationMapper.batchInsert(update);
+                    insertLog += processTaskRelationLogMapper.batchInsert(update);
+                }
                 if ((insert & insertLog) == 0) {
                     throw new ServiceException(Status.CREATE_PROCESS_TASK_RELATION_ERROR);
                 }

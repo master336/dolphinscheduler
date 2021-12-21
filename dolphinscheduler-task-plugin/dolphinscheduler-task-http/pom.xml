@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-http</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/http</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

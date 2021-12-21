@@ -907,8 +907,14 @@ public class ProcessDefinitionServiceImpl extends BaseServiceImpl implements Pro
             }
             taskDefinitionLogList.add(taskDefinitionLog);
         }
-        int insert = taskDefinitionMapper.batchInsert(taskDefinitionLogList);
-        int logInsert = taskDefinitionLogMapper.batchInsert(taskDefinitionLogList);
+        int insert = 0;
+        for (TaskDefinitionLog taskDefinitionLog : taskDefinitionLogList) {
+            insert += taskDefinitionMapper.batchInsert(taskDefinitionLog);
+        }
+        int logInsert = 0;
+        for (TaskDefinitionLog taskDefinitionLog : taskDefinitionLogList) {
+            logInsert += taskDefinitionLogMapper.batchInsert(taskDefinitionLog);
+        }
         if ((logInsert & insert) == 0) {
             putMsg(result, Status.CREATE_TASK_DEFINITION_ERROR);
             throw new ServiceException(Status.CREATE_TASK_DEFINITION_ERROR);

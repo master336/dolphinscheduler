@@ -24,7 +24,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>dolphinscheduler-task-spark</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/spark</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

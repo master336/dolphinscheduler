@@ -25,7 +25,9 @@
 
     <artifactId>dolphinscheduler-task-sql</artifactId>
     <packaging>jar</packaging>
-
+    <properties>
+        <plugin.type>../../task/sql</plugin.type>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dolphinscheduler</groupId>

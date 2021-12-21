@@ -36,7 +36,10 @@
     <select id="queryCommandPage" resultType="org.apache.dolphinscheduler.dao.entity.Command">
         select *
         from t_ds_command
+        where
+            rownum &lt;= #{limit} +  #{offset}
+            and rownum &gt;  #{offset}
         order by process_instance_priority, id asc
-        limit #{limit} offset #{offset}
+
     </select>
 </mapper>
